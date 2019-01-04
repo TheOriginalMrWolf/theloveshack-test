@@ -14,14 +14,16 @@ onmessage = function(msg) {
 
     var xhr = new XMLHttpRequest();
     
-    xhr.open("GET", "https://www.google.com.au/");
+    xhr.open("GET", "/index.html");
     
     xhr.onload = function () {
+        console.log("onload...");
         postMessage(xhr.responseText);
     };
     
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("onreadystatechange...");
             postMessage(xhr.responseText);
         }
     };
