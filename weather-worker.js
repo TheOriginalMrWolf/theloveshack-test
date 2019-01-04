@@ -6,4 +6,7 @@ if(req.status == 200)
    dump(req.responseText);
    */
 
-postMessage("Hi There!");
+onmessage = function(msg) {
+    console.log(msg);
+    postMessage("Received message: " + msg);
+}
