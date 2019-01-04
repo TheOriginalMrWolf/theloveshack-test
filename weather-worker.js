@@ -14,7 +14,7 @@ onmessage = function(msg) {
 
     var xhr = new XMLHttpRequest();
     
-    xhr.open("GET", "/index.html");
+    xhr.open("GET", "https://theoriginalmrwolf.github.io/theloveshack-test/index.html");
     
     xhr.onload = function () {
         console.log("onload...");
