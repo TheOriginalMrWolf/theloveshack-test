@@ -21,7 +21,7 @@ onmessage = function(msg) {
     };
     
     xhr.onreadystatechange = function () {
-        if (req.readyState == 4 && req.status == 200) {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             postMessage(xhr.responseText);
         }
     };
