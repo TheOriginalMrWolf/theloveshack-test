@@ -58,13 +58,13 @@
                     var worker = new Worker("weather-worker.js");
                     
                     worker.onmessage = function (event) {
-                        alert(event.data);
+                        console.log("Worker: ", event.data);
                     };
 
                     worker.postMessage("https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast");
 
                     //setTimeout(function(){ document.getElementById('id_weather_iframe').src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast"; alert("Boom"); }, 10000);
-
+                    /*
                     function loadXMLDoc()
                         {
                             var xmlhttp;
@@ -86,7 +86,7 @@
                             xmlhttp.open("GET","https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast",true);
                             xmlhttp.send();
                         }
-
+                    */
                     // setTimeout(loadXMLDoc(),5000);
 
                     $("#id_weather_iframe").on("load",

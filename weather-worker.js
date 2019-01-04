@@ -3,12 +3,11 @@
    */
 
 onmessage = function(msg) {
-    console.log(msg);
+    console.log("Inside: ", msg.data);
     
     var req = new XMLHttpRequest(); 
     req.open('GET', msg.data, false);   
     req.send(null);  
 
-    if(req.status == 200)  
-       postMessage(req.responseText);
+    postMessage(req.responseText);
 }
