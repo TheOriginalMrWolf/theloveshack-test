@@ -13,9 +13,18 @@ onmessage = function(msg) {
     */
 
     var xhr = new XMLHttpRequest();
+    
     xhr.open("GET", "https://www.google.com.au/");
+    
     xhr.onload = function () {
         postMessage(xhr.responseText);
     };
+    
+    xhr.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+            postMessage(xhr.responseText);
+        }
+    };
+
     xhr.send();     
 }
