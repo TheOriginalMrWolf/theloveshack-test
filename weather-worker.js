@@ -9,5 +9,5 @@ onmessage = function(msg) {
         }
     }; 
 
-    req.send(null);  
+    req.send();  
 }
