@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>The Love Shack Surf Report</title>
+        <meta name="description" content="The Love Shack Surf Report">
+        <meta name="author" content="Armin Aschoff">
+        
+        <style>
+            
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            
+            #id_weather_div {
+                display: block; 
+                background: yellow;
+            }
+            
+            #id_video_container_div {
+                display: block; 
+                background: yellow;
+            }
+
+            #id_video_iframe {
+                width: 640px;
+                height: 360px;
+                overflow: hidden;
+                overflow-x: hidden; 
+                overflow-y: hidden;
+                margin: 0 auto;
+                display: block; 
+                border: none; 
+            }
+
+            #id_weather_iframe {
+                width: 640px;
+                height: 1300px;
+                overflow: hidden;
+                overflow-x: hidden; 
+                overflow-y: hidden;
+                margin: 0 auto;
+                display: block; 
+                border: none; 
+            }
+
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <script>
+            $(document).ready(
+                function(){
+                    var willyweatherIframe = document.createElement('iframe');
+                    willyweatherIframe.src = 'https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast'
+                    document.body.appendChild(willyweatherIframe);
+                }
+            );
+
+        </script>
+    </head>
+
+</html>
