@@ -15,24 +15,40 @@
                 height: 100%;
                 margin: 0;
             }
+
+            body {
+                background-color: #000000;
+            }
             
+            #background_image {
+                display: block;
+                position: fixed; /* Set the navbar to fixed position */
+                top: 0; /* Position the navbar at the top of the page */
+                width: 100%;
+                z-index: -1;
+                background-color: #000000;
+                /*opacity: 0.8;
+                filter: alpha(opacity=80); /* For IE8 and earlier */             
+            }
+
             #id_weather_div {
                 display: block; 
-                background: yellow;
             }
             
             #id_video_container_div {
                 display: block; 
-                background: yellow;
+                overflow: hidden;
+                position: fixed; /* Set the video to fixed position */
+                top: 0; /* Position the video at the top of the page */
+                width: 100%;
+                padding-top: 20px;
             }
 
             #id_video_iframe {
                 width: 640px;
                 height: 360px;
                 overflow: hidden;
-                overflow-x: hidden; 
-                overflow-y: hidden;
-                margin: 0 auto;
+                margin: auto;
                 display: block; 
                 border: none; 
             }
@@ -40,41 +56,43 @@
             #willyWeather, #windy, #weatherTabs, #id_willyWeather_iFrame, #id_windy_iFrame {
                 width: 640px;
                 height: 1300px;
-                overflow: hidden;
-                overflow-x: hidden; 
-                overflow-y: hidden;
-                margin: 0 auto;
+                overflow: visible;
+                margin: auto;
                 display: block; 
                 border: none; 
             }
 
+            #weatherTabs {
+                padding-top: 400px;
+            }
+
             /* Style the tab */
             .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
             }
 
             /* Style the buttons inside the tab */
             .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
             }
 
             /* Change background color of buttons on hover */
             .tab button:hover {
-            background-color: #ddd;
+                background-color: #ddd;
             }
 
             /* Create an active/current tablink class */
             .tab button.active {
-            background-color: #ccc;
+                background-color: #ccc;
             }
 
             /* Style the tab content */
@@ -92,6 +110,10 @@
     </head>
 
     <body>
+        <div id="background_image">
+            <img style="width:100%" src="beach_picture.jpg">
+        </div>
+
         <div id="id_video_container_div">
             <frameset>
                 <iframe id="id_video_iframe" src="https://www.youtube.com/embed/live_stream?autoplay=1&channel=UCkomrWJWXxF2rSE4lJ8KrKA" frameborder="0" allowfullscreen></iframe>
@@ -104,48 +126,47 @@
         <div id="weatherTabs">
 
             <div class="tab">
-                <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'willyWeather')">Willy Weather</button>
-                <button class="tablinks" onclick="openTab(event, 'windy')">Windy.com</button>
+                <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'windy')">Windy.com</button>
+                <button class="tablinks" onclick="openTab(event, 'willyWeather')">Willy Weather</button>
             </div>
-
-
-            <div id="willyWeather" class="tabcontent">
-                <frameset>
-                    <iframe id="id_willyWeather_iFrame"  frameborder="0" allowfullscreen src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast" ></iframe>
-                    <noframes>
-                        <body>Your browser does not support frames.</body>
-                    </noframes>
-                </frameset>
-            </div>    
 
             <div id="windy" class="tabcontent">
                     <frameset>
-                            <iframe width="640" height="800" src="https://embed.windy.com/embed2.html?lat=-33.649&lon=151.326&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=24&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.590&detailLon=151.325&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+                        <iframe width="640" height="800" src="https://embed.windy.com/embed2.html?lat=-33.610771&lon=151.331654&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.610771&detailLon=151.331654&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
                         <noframes>
                             <body>Your browser does not support frames.</body>
                         </noframes>
                     </frameset>
             </div>    
+
+            <div id="willyWeather" class="tabcontent">
+                    <frameset>
+                        <iframe id="id_willyWeather_iFrame"  frameborder="0" allowfullscreen src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast" ></iframe>
+                        <noframes>
+                            <body>Your browser does not support frames.</body>
+                        </noframes>
+                    </frameset>
+            </div>    
+
         </div>
         <script>
-                function openTab(evt, tabName) {
-                  var i, tabcontent, tablinks;
-                  tabcontent = document.getElementsByClassName("tabcontent");
-                  for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                  }
-                  tablinks = document.getElementsByClassName("tablinks");
-                  for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                  }
-                  document.getElementById(tabName).style.display = "block";
-                  evt.currentTarget.className += " active";
+            function openTab(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
                 }
-                
-                // Get the element with id="defaultOpen" and click on it
-                document.getElementById("defaultOpen").click();
-                </script>
-
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
     </body>
 </html>
 
