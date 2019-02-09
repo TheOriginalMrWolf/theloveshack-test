@@ -51,53 +51,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
-        <script>
-            $(document).ready(
-                function(){
-                    
-                    var worker = new Worker("weather-worker.js");
-                    
-                    worker.onmessage = function (event) {
-                        console.log("Worker: ", event.data);
-                    };
-
-                    //worker.postMessage("https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast");
-                    worker.postMessage("https:///www.google.com.au/");
-                    setTimeout(function(){ document.getElementById('id_weather_iframe').src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast"; alert("Boom"); }, 10000);
-                    /*
-                    function loadXMLDoc()
-                        {
-                            var xmlhttp;
-                            if (window.XMLHttpRequest)
-                            {
-                                xmlhttp=new XMLHttpRequest();
-                            }
-                            else
-                            {
-                                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                            }
-                            xmlhttp.onreadystatechange=function()
-                            {
-                                if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                                    {
-                                    document.getElementById("cheat").innerHTML=xmlhttp.responseText;
-                                    }
-                            }
-                            xmlhttp.open("GET","https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast",true);
-                            xmlhttp.send();
-                        }
-                    */
-                    // setTimeout(loadXMLDoc(),5000);
-
-                    $("#id_weather_iframe").on("load",
-                        function() {
-                            console.log("Weather loaded.");
-                        }
-                    );
-                }
-            );
-
-        </script>
+        
     </head>
 
     <body>
@@ -106,11 +60,7 @@
         </div>
         <div id="id_weather_div">
             <iframe id="id_weather_iframe" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div id="cheat">Cheat...</div>
-
-        Bottom of Div...
-            
+        </div>    
     </body>
 </html>
 
