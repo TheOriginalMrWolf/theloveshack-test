@@ -33,20 +33,16 @@
             }
 
 
-            #OLDid_video_container_div {
-                display: block; 
-                overflow: hidden;
-                width: 100%;
-                padding-top: 20px;
-            }
-
-            #BLAHid_video_iframe {
-                width:640px;
-                height:360px;
-                overflow: hidden;
-                margin: auto;
-                display: block; 
-                border: none; 
+            #header {
+                box-sizing: border-box;
+                background-color: #00000044;
+                text-align: center;
+                background-image: linear-gradient(#0000EEFF, #0000EE00);
+                letter-spacing: 2px;
+                word-spacing: 3px;
+                font-style: italic;
+                color: whitesmoke; 
+                font-family: Arial, Helvetica, sans-serif;
             }
 
             .centered-div {
@@ -59,8 +55,9 @@
             }
 
             .videobox {
-                margin-top: 20px;
+                margin-top: 5px;
                 max-height: 360px;
+                box-sizing: border-box;
             }
 
             .videoWrapper {
@@ -142,12 +139,15 @@
             <img style="width:100%" src="beach_picture.jpg">
         </div>
 
-        <div class="pagecolumn centered-div">
+        <div id="header">
+                <h1>Welcome to the LUUuuurrve Shack!</h1>
+        </div>
 
+        <div class="pagecolumn centered-div">
             <div class="videobox">
                 <div class="videoWrapper" >
                     <frameset>
-                        <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/7n-IIi9xc8w?autoplay=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameborder="0" ></iframe>
+                        <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/7n-IIi9xc8w?autoplay=1&modestbranding=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameborder="0" ></iframe>
                         <noframes>
                             <body>Your browser does not support frames.</body>
                         </noframes>
