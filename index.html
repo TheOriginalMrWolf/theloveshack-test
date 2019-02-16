@@ -91,6 +91,15 @@
                 display: block; 
             }
 
+            #id_windy_iFrame, #id_willyWeather_iFrame  {
+                height: 0;
+                max-height: 100%;
+                max-width: 100%;
+                min-height: 100%;
+                min-width: 100%;
+                width: 0;
+            }
+
             /* Style the tab */
             .tab {
                 overflow: hidden;
@@ -164,7 +173,7 @@
 
                 <div id="windy" class="tabcontent">
                         <frameset>
-                            <iframe width="100%" height="800px" frameborder="0"src="https://embed.windy.com/embed2.html?lat=-33.610771&lon=151.331654&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.610771&detailLon=151.331654&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+                            <iframe id="id_windy_iFrame" width="100%" height="800px" frameborder="0"src="https://embed.windy.com/embed2.html?lat=-33.610771&lon=151.331654&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.610771&detailLon=151.331654&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
                             <noframes>
                                 <body>Your browser does not support frames.</body>
                             </noframes>
