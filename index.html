@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
         <title>The Love Shack Surf Report</title>
         <meta name="description" content="The Love Shack Surf Report">
@@ -153,7 +154,7 @@
             <div class="videobox">
                 <div class="videoWrapper" >
                     <frameset>
-                        <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/7n-IIi9xc8w?autoplay=1&fs=1"  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen="1"></iframe>
+                        <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/live_stream?channel=UCkomrWJWXxF2rSE4lJ8KrKA&autoplay=1" frameborder="0" allowfullscreen allow="accelerometer; autoplay; encrypted-media; gyroscope;"></iframe>
                         <noframes>
                             <body>Your browser does not support frames.</body>
                         </noframes>
@@ -164,9 +165,9 @@
             <div id="weatherTabs" >
 
                 <div class="tab">
-                    <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'windy', 'id_windy_iFrame')">Windy.com</button>
-                    <button class="tablinks" onclick="openTab(event, 'willyWeather', 'id_willyWeather_iFrame')">Willy Weather</button>
-                    <button class="tablinks" onclick="openTab(event, 'weatherunderground','id_weatherunderground_iFrame')">Weather Underground</button>
+                    <button class="tablinks w3-bottombar w3-padding" id="defaultOpen" onclick="openTab(event, 'windy', 'id_windy_iFrame')">Windy.com</button>
+                    <button class="tablinks w3-bottombar w3-padding" onclick="openTab(event, 'willyWeather', 'id_willyWeather_iFrame')">Willy Weather</button>
+                    <button class="tablinks w3-bottombar w3-padding" onclick="openTab(event, 'weatherunderground','id_weatherunderground_iFrame')">Weather Underground</button>
                 </div>
 
                 <div id="windy" class="tabcontent">
@@ -207,9 +208,10 @@
                 tablinks = document.getElementsByClassName("tablinks");
                 for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
                 }
                 document.getElementById(tabName).style.display = "block";
-                evt.currentTarget.className += " active";
+                evt.currentTarget.className += " active w3-border-red";
                 
                 if (iframeID) {
                     //force a refresh of the iframe
