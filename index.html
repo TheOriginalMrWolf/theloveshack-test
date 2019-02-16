@@ -15,7 +15,11 @@
         <link rel="preload" href="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast" as="document">
         -->
         <style>
-            
+            :root {
+                --max-column-width: 640px;
+            }   
+
+
             html, body {
                 height: 100%;
                 margin: 0;
@@ -53,7 +57,7 @@
 
             .pagecolumn {
                 width: 100vw;
-                max-width: 640px;
+                max-width: var(--max-column-width);
                 box-sizing: border-box;
             }
 
@@ -140,9 +144,17 @@
 
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            function updateColumnWidth() {
+                alert("Getting Dizzy!");
+            }
+
+            window.onorientationchange = updateColumnWidth;
+
+        </script>
     </head>
 
-    <body>
+    <body onload="updateColumnWidth()">
         <div id="background_image">
             <img style="width:100%" src="beach_picture.jpg">
         </div>
