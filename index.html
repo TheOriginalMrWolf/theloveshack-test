@@ -32,30 +32,15 @@
                 background-color: #000000;           
             }
 
-            #weatherTabs {
-                display: block; 
-                padding-top: 20px;
-                opacity: 0.96;
-                filter: alpha(opacity=96); /* For IE8 and earlier */  
-            }
-            
-            #id_video_container_div {
+
+            #OLDid_video_container_div {
                 display: block; 
                 overflow: hidden;
                 width: 100%;
                 padding-top: 20px;
             }
 
-            .id_video_container_div iframe {
-	            position: absolute;
-	            top: 0;
-	            left: 0;
-	            width: 100%;
-	            height: 100%;
-            }
-
-
-            #id_video_iframe {
+            #BLAHid_video_iframe {
                 width:640px;
                 height:360px;
                 overflow: hidden;
@@ -63,6 +48,40 @@
                 display: block; 
                 border: none; 
             }
+
+            .centered-div {
+                margin: auto;                
+            }
+
+            .videobox {
+                max-width: 640px;
+                max-height: 480px;
+            }
+
+            .videoWrapper {
+                position: relative;
+	            padding-bottom: 56.25%; /* 16:9 */
+                padding-top: 25px;
+                height: 0;
+                border: 5px solid green;
+                background-color: white;
+            }
+
+            .videoWrapper iframe {
+                position: absolute;
+	            top: 0;
+	            left: 0;
+	            width: 100%;
+	            height: 100%;
+            }
+
+            #weatherTabs {
+                display: block; 
+                padding-top: 20px;
+                opacity: 0.96;
+                filter: alpha(opacity=96); /* For IE8 and earlier */  
+            }
+            
 
             #willyWeather, #windy, #weatherTabs, #id_willyWeather_iFrame, #id_windy_iFrame {
                 width: 640px;
@@ -120,14 +139,16 @@
             <img style="width:100%" src="beach_picture.jpg">
         </div>
 
-        <div id="id_video_container_div">
+        <div class="videobox centered-div">
+        <div class="videoWrapper" >
             <frameset>
-                <iframe id="id_video_iframe" src="https://www.youtube.com/embed/live_stream?autoplay=1&channel=UCkomrWJWXxF2rSE4lJ8KrKA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" autoplay="1" modestbranding="1"></iframe>
+                <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/live_stream?autoplay=1&channel=UCkomrWJWXxF2rSE4lJ8KrKA" frameborder="0" autoplay modestbranding></iframe>
                 <noframes>
                     <body>Your browser does not support frames.</body>
                 </noframes>
             </frameset>
         </div>
+    </div>
 
         <div id="weatherTabs">
 
