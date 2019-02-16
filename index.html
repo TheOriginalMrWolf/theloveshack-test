@@ -16,6 +16,7 @@
         -->
         <style>
             :root {
+                --defaultColumnWidth: 640;
                 --max-column-width: 640px;
             }   
 
@@ -56,8 +57,7 @@
             }
 
             .pagecolumn {
-                width: 100vw;
-                max-width: var(--max-column-width);
+                width: var(--max-column-width);
                 box-sizing: border-box;
             }
 
@@ -92,8 +92,8 @@
 
             #willyWeather, #windy, #weatherunderground, #weatherTabs {
                 /* width: 640px; */
-                width: 100vw;
-                max-width: 640px;
+                /*width: 100vw;*/
+                width: var(--max-column-width);;
                 /* height: 3600px; */
                 overflow: visible;
                 margin: auto;
@@ -146,7 +146,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             function updateColumnWidth() {
-                alert("Getting Dizzy!");
+                let root = document.documentElement;
+                let defaultColumnWidth = window.getComputedStyle(root).getPropertyValue('--defaultColumnWidth');
+                let clientWidth = document.documentElement.clientWidth;
+                let setWidth = Math.min(defaultColumnWidth, clientWidth);
+                
+                alert("Default: " + defaultColumnWidth + ".  Client Width: " + clientWidth + ".  So setting to: " + setWidth);
+
+                root.style.setProperty('--max-column-width',  setWidth + "px");
             }
 
             window.onorientationchange = updateColumnWidth;
