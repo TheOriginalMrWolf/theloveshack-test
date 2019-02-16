@@ -53,8 +53,12 @@
                 margin: auto;                
             }
 
-            .videobox {
+            .pagecolumn {
                 max-width: 640px;
+            }
+
+            .videobox {
+                margin-top: 20px;
                 max-height: 480px;
             }
 
@@ -63,8 +67,6 @@
 	            padding-bottom: 56.25%; /* 16:9 */
                 padding-top: 25px;
                 height: 0;
-                border: 5px solid green;
-                background-color: white;
             }
 
             .videoWrapper iframe {
@@ -139,7 +141,9 @@
             <img style="width:100%" src="beach_picture.jpg">
         </div>
 
-        <div class="videobox centered-div">
+        <div class="pagecolumn centered-div">
+
+        <div class="videobox">
         <div class="videoWrapper" >
             <frameset>
                 <iframe id="id_video_iframe" width="640" height="360" src="https://www.youtube.com/embed/live_stream?autoplay=1&channel=UCkomrWJWXxF2rSE4lJ8KrKA" frameborder="0" autoplay modestbranding></iframe>
@@ -174,7 +178,7 @@
                         </noframes>
                     </frameset>
             </div>    
-
+        </div>
         </div>
         <script>
             function openTab(evt, tabName) {
