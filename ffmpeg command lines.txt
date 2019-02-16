@@ -1,3 +1,22 @@
 ffmpeg -f lavfi -i anullsrc -rtsp_transport udp -i rtsp://admin:Password@192.168.2.189/live/ch00_1 -tune zerolatency -vcodec libx264 -t 12:00:00 -pix_fmt + -c:v copy -c:a aac -strict experimental -f flv rtmp://a.rtmp.youtube.com/live2/uv7q-q9ug-4hdd-540w
 
 ffmpeg -an -rtsp_transport tcp -i rtsp://admin:Password@192.168.2.189/live/ch00_1 -tune zerolatency -vcodec libx264 -t 4:00:00 -pix_fmt + -c:v copy -f flv rtmp://a.rtmp.youtube.com/live2/uv7q-q9ug-4hdd-540w
+
+ffmpeg -an -rtsp_transport tcp -i rtsp://admin:kahlua07!@192.168.2.177:554/cam/realmonitor?channel=1&subtype=0&unicast=true -tune zerolatency -vcodec libx264 -t 4:00:00 -pix_fmt + -c:v copy -f flv rtmp://a.rtmp.youtube.com/live2/uv7q-q9ug-4hdd-540w
+
+
+rtsp://admin:kahlua07!@192.168.2.177:554/cam/realmonitor?channel=1&subtype=0&unicast=true
+
+docker run -d --restart always --name restreamer -e "RS_USERNAME=admin" -e "RS_PASSWORD=kahlua07!" -e "RS_SNAPSHOT_INTERVAL=0" -e "RS_TIMEZONE=Australia/Sydney" -p 8080:8080 -v /tmp:/tmp -v /mnt/restreamer/db:/restreamer/db datarhei/restreamer-armv7l:latest
+
+uv7q-q9ug-4hdd-540w
+
+<iframe width="2547" height="1167" src="https://www.youtube.com/embed/LDkd0atzr8Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/7n-IIi9xc8w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="2547" height="1167" src="https://www.youtube.com/embed/7n-IIi9xc8w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="788.54" height="443" type="text/html" src="https://www.youtube.com/embed/DBXH9jJRaDk?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&
+
+<iframe width="2547" height="1167" src="https://www.youtube.com/embed/7n-IIi9xc8w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
