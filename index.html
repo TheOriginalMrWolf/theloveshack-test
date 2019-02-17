@@ -26,6 +26,9 @@
                 console.log("Default:", maxColumnWidth,"  Client Width:", clientWidth, "  So setting to:", setWidth);
                 root.style.setProperty('--main-column-width',  setWidth + "px");
 
+                //fix up background image
+                document.getElementById("backgroundImage").width = clientWidth;
+
                 //fix up youtube
                 let youtubeFrame = document.getElementById("youtubeFrame");
                 youtubeFrame.width = setWidth;
@@ -77,12 +80,19 @@
 
             body {
                 background-color: #000000;
-                background-image: url("beach_picture.jpg");
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;   
-                background-attachment: fixed;
             }            
+
+            .background-div {
+                position: fixed;
+                overflow: hidden;
+                top:0;
+                z-index: -1;
+            }
+
+            .background-div img {
+                width: 100%;
+                height: 100%;
+            }
 
             #header {
                 box-sizing: border-box;
@@ -162,7 +172,9 @@
         
     </head>
 
-    <body id="background_image" onload="updateColumnWidth()">
+    <body onload="updateColumnWidth()">
+
+        <div class="background-div"><img id="backgroundImage" src="beach_picture.jpg"></div>
 
         <div id="header">
                 <h1>Welcome to the LUUuuurrve Shack!</h1>
