@@ -79,15 +79,14 @@
                 background-color: #000000;
             }
             
-            #background_image {
-                display: block;
-                position: fixed; /* Set the navbar to fixed position */
-                top: 0; /* Position the navbar at the top of the page */
-                width: 100%;
-                z-index: -1;
-                background-color: #000000;           
+            #background_image {   
+                background-image: url("beach_picture.jpg");
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;   
             }
-
+            
 
             #header {
                 box-sizing: border-box;
@@ -167,10 +166,7 @@
         
     </head>
 
-    <body onload="updateColumnWidth()">
-        <div id="background_image">
-            <img src="beach_picture.jpg">
-        </div>
+    <body id="background_image" onload="updateColumnWidth()">
 
         <div id="header">
                 <h1>Welcome to the LUUuuurrve Shack!</h1>
