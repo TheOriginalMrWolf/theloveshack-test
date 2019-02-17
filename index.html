@@ -9,13 +9,24 @@
         <meta name="description" content="The Love Shack Surf Report">
         <meta name="author" content="Armin Aschoff">
         <script>
+            var globals = {activeFrame:undefined};
+
             function updateColumnWidth() {
+                //updates column width to match current display area, and refreshes the active iFrame
+
                 let root = document.documentElement;
                 let maxColumnWidth = window.getComputedStyle(root).getPropertyValue('--max-column-width');
                 let clientWidth = document.documentElement.clientWidth;
                 let setWidth = Math.min(maxColumnWidth, clientWidth);
                 console.log("Default:", maxColumnWidth,"  Client Width:", clientWidth, "  So setting to:", setWidth);
                 root.style.setProperty('--main-column-width',  setWidth + "px");
+
+                if (globals.activeFrame) {
+                    //force a refresh of the iframe
+                    let iframe = document.getElementById(globals.activeFrame); 
+                    iframe.src = iframe.src;
+                    iframe.width = setWidth;
+                }
             }
 
             window.onorientationchange = updateColumnWidth;
@@ -202,7 +213,7 @@
         <script>
             function openTab(evt, tabName, iframeID) {
 
-                updateColumnWidth();
+                globals.activeFrame = iframeID;
 
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -217,12 +228,7 @@
                 document.getElementById(tabName).style.display = "block";
                 evt.currentTarget.className += " active w3-border-red";
                 
-                if (iframeID) {
-                    //force a refresh of the iframe
-                    let iframe = document.getElementById(iframeID); 
-                    iframe.src = iframe.src;
-                    iframe.width = window.getComputedStyle(document.documentElement).getPropertyValue('--main-column-width');
-                }
+                updateColumnWidth();
             }
             
             // Get the element with id="defaultOpen" and click on it
