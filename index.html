@@ -34,13 +34,13 @@
                 //resize all the frame containers
                 let tabcontent = document.getElementsByClassName("tabcontent");
                 for (let i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.width = setWidth+"px";
+                    tabcontent[i].width = setWidth+"px";
                 }
 
                 //resize all the weather iFrames
                 let iFrameContent = document.getElementsByClassName("weatherFrame");
                 for (let i = 0; i < iFrameContent.length; i++) {
-                    iFrameContent[i].style.width = setWidth+"px";
+                    iFrameContent[i].width = setWidth+"px";
                 }
 
                 //and refresh the active iFrame
