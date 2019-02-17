@@ -30,9 +30,14 @@
                 }
             }
 
-            window.onorientationchange = updateColumnWidth;
-            window.onresize = updateColumnWidth;
-    
+            window.onorientationchange = function() {
+                alert("Orientation Change");
+                updateColumnWidth();
+            }
+            window.onresize = function() {
+                alert("Resize");
+                updateColumnWidth();
+            }
         </script>
         
         <style>
