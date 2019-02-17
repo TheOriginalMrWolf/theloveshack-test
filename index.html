@@ -17,6 +17,7 @@
                 let root = document.documentElement;
                 let maxColumnWidth = window.getComputedStyle(root).getPropertyValue('--max-column-width');
                 let clientWidth = root.clientWidth;
+                globals.clientWidth = clientWidth;
                 let setWidth = Math.min(maxColumnWidth, clientWidth);
                 console.log("Default:", maxColumnWidth,"  Client Width:", clientWidth, "  So setting to:", setWidth);
                 root.style.setProperty('--main-column-width',  setWidth + "px");
