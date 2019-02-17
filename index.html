@@ -4,10 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <title>The Love Shack Surf Report</title>
         <meta name="description" content="The Love Shack Surf Report">
         <meta name="author" content="Armin Aschoff">
+        
+        <!--
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        -->
+
         <script>
             var globals = {activeFrame:undefined, clientWidth:0, youtubeAspectRation:1.7778};
 
@@ -27,17 +31,22 @@
                 youtubeFrame.width = setWidth;
                 youtubeFrame.height = setWidth / globals.youtubeAspectRation;
 
-                //resize all the tabs
+                //resize all the frame containers
                 let tabcontent = document.getElementsByClassName("tabcontent");
                 for (let i = 0; i < tabcontent.length; i++) {
                     tabcontent[i].style.width = setWidth+"px";
                 }
 
+                //resize all the weather iFrames
+                let iFrameContent = document.getElementsByClassName("weatherFrame");
+                for (let i = 0; i < iFrameContent.length; i++) {
+                    iFrameContent[i].style.width = setWidth+"px";
+                }
+
                 //and refresh the active iFrame
                 if (globals.activeFrame) {
                     //alert("Refreshing: " + globals.activeFrame);
-                    let iframe = document.getElementById(globals.activeFrame); 
-                    iframe.width = setWidth;
+                    let iframe = document.getElementById(globals.activeFrame);
                     iframe.src = iframe.src;
                 }
             }
@@ -52,8 +61,6 @@
                     updateColumnWidth();
                 }
             }
-
-        
         </script>
         
         <style>
@@ -115,15 +122,16 @@
             /* Style the tab */
             .tab {
                 overflow: hidden;
-                border: 1px solid #ccc;
-                background-color: #f1f1f1;
+                background-color: #aca6a6;
             }
 
             /* Style the buttons inside the tab */
             .tab button {
-                background-color: inherit;
+                background-color: #f0f0f0;
                 float: left;
                 border: none;
+                margin-left: 3px;
+                border-right: 3px;
                 outline: none;
                 cursor: pointer;
                 padding: 14px 16px;
@@ -171,7 +179,7 @@
         <div class="pagecolumn centered-div">
             <div id="youtubeDiv" >
                 <frameset>
-                    <iframe id="youtubeFrame" src="https://www.youtube.com/embed/live_stream?channel=UCkomrWJWXxF2rSE4lJ8KrKA&autoplay=1" frameborder="0" autoplay allowfullscreen allow="accelerometer; autoplay; encrypted-media; gyroscope;"></iframe>
+                    <iframe id="youtubeFrame" src="https://www.youtube.com/embed/live_stream?channel=UCkomrWJWXxF2rSE4lJ8KrKA&autoplay=true" frameborder="0" autoplay allowfullscreen allow="accelerometer; autoplay; encrypted-media; gyroscope;"></iframe>
                     <noframes>
                         <body>Your browser does not support frames.</body>
                     </noframes>
@@ -188,7 +196,7 @@
 
                 <div id="windy" class="tabcontent">
                         <frameset>
-                            <iframe id="id_windy_iFrame" height="800px" frameborder="0"src="https://embed.windy.com/embed2.html?lat=-33.610771&lon=151.331654&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.610771&detailLon=151.331654&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+                            <iframe class="weatherFrame" id="id_windy_iFrame" height="800px" frameborder="0"src="https://embed.windy.com/embed2.html?lat=-33.610771&lon=151.331654&zoom=11&level=surface&overlay=waves&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=true&detailLat=-33.610771&detailLon=151.331654&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
                             <noframes>
                                 <body>Your browser does not support frames.</body>
                             </noframes>
@@ -197,7 +205,7 @@
 
                 <div id="willyWeather" class="tabcontent">
                         <frameset>
-                            <iframe id="id_willyWeather_iFrame" height="1300px" frameborder="0" src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast" ></iframe>
+                            <iframe class="weatherFrame" id="id_willyWeather_iFrame" height="2000px" frameborder="0" src="https://www.willyweather.com.au/graphs.html?graph=outlook:1,location:2249,series=order:0,id:sunrisesunset,type:forecast,series=order:1,id:swell-height,type:forecast,series=order:2,id:swell-period,type:forecast,series=order:3,id:wind,type:forecast,series=order:4,id:tides,type:forecast" ></iframe>
                             <noframes>
                                 <body>Your browser does not support frames.</body>
                             </noframes>
@@ -206,7 +214,7 @@
 
                 <div id="weatherunderground" class="tabcontent">
                         <frameset>
-                            <iframe id="id_weatherunderground_iFrame" height="4600px" frameborder="0" src="https://www.wunderground.com/personal-weather-station/dashboard?ID=INSWWHAL3" ></iframe>
+                            <iframe class="weatherFrame" id="id_weatherunderground_iFrame" height="4600px" frameborder="0" src="https://www.wunderground.com/personal-weather-station/dashboard?ID=INSWWHAL3" ></iframe>
                             <noframes>
                                 <body>Your browser does not support frames.</body>
                             </noframes>
@@ -227,10 +235,11 @@
                 tablinks = document.getElementsByClassName("tablinks");
                 for (i = 0; i < tablinks.length; i++) {
                     tablinks[i].className = tablinks[i].className.replace(" active", "");
-                    tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+                    //tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
                 }
-                document.getElementById(tabName).style.display = "block";
-                evt.currentTarget.className += " active w3-border-red";
+                document.getElementById(tabName).style.display = "inline-block";
+                //evt.currentTarget.className += " active w3-border-red";
+                evt.currentTarget.className += " active";
                 
                 updateColumnWidth();
             }
