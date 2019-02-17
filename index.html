@@ -23,6 +23,7 @@
 
                 if (globals.activeFrame) {
                     //force a refresh of the iframe
+                    alert("Refreshing: " + globals.activeFrame);
                     let iframe = document.getElementById(globals.activeFrame); 
                     iframe.src = iframe.src;
                     iframe.width = setWidth;
