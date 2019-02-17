@@ -9,14 +9,14 @@
         <meta name="description" content="The Love Shack Surf Report">
         <meta name="author" content="Armin Aschoff">
         <script>
-            var globals = {activeFrame:undefined};
+            var globals = {activeFrame:undefined, clientWidth:0};
 
             function updateColumnWidth() {
                 //updates column width to match current display area, and refreshes the active iFrame
 
                 let root = document.documentElement;
                 let maxColumnWidth = window.getComputedStyle(root).getPropertyValue('--max-column-width');
-                let clientWidth = document.documentElement.clientWidth;
+                let clientWidth = root.clientWidth;
                 let setWidth = Math.min(maxColumnWidth, clientWidth);
                 console.log("Default:", maxColumnWidth,"  Client Width:", clientWidth, "  So setting to:", setWidth);
                 root.style.setProperty('--main-column-width',  setWidth + "px");
@@ -30,13 +30,15 @@
                 }
             }
 
-            window.onorientationchange = function() {
-                alert("Orientation Change");
-                updateColumnWidth();
-            }
+            window.onorientationchange = updateColumnWidth;
+
             window.onresize = function() {
-                alert("Resize");
-                updateColumnWidth();
+                //filter out resize events triggered by iPhone scrolling...
+                if (document.documentElement.clientWidth !== globals.clientWidth) {
+                    globals.clientWidth = document.documentElement.clientWidth;
+                    alert("Resize");
+                    updateColumnWidth();
+                }
             }
         </script>
         
@@ -156,7 +158,10 @@
             
 
         </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!--
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        -->
+        
     </head>
 
     <body onload="updateColumnWidth()">
