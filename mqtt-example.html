@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MQTT Example for the LurveShack</title>
+    <meta name="author" content="Armin Aschoff">
+    <meta name="description" content="Example MQTT over WS client">
+    <meta name="keywords" content="MQTT">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" language="javascript">
+
+        //basic example of using the Paho MQTT client
+        //doesn't automatically reconnect etc, so that could be improved.  Or just reload the web page :)
+        //At least I log connection made & lost :)
+
+        //reference docco at: https://www.eclipse.org/paho/files/jsdoc/index.html
+
+        // Create a client instance
+        const client = new Paho.MQTT.Client("mrred5i0zt.messaging.solace.cloud", Number(20585), "/ws", "whaley-client-1");
+
+        // set callback handlers
+        client.onConnectionLost = onConnectionLost;
+        client.onMessageArrived = onMessageArrived;
+
+        // connect the client
+        client.connect({
+            onSuccess: onConnect,
+            userName : "solace-cloud-client",
+	        password : "7pif825ffroajiok94btpvl2a9",
+            useSSL: true,
+            cleanSession: false,
+        });
+
+
+        // called when the client connects
+        function onConnect() {
+            // Log success & subscribe to interesting topics once a connection has been made.
+            
+            console.log("Connected to MQTT broker");
+            
+            const subscribeOptions = {
+                qos: 1,  // QoS
+                //invocationContext: {foo: true},  // Passed to success / failure callback
+                //onSuccess: onSuccessCallback,
+                //onFailure: onFailureCallback,
+                //timeout: 10
+            };
+            client.subscribe("whaley/#", subscribeOptions);
+
+            //request status
+            sendCameraControl("STATUS", 1, false);
+        }
+
+        // called when the client loses its connection
+        function onConnectionLost(responseObject) {
+            if (responseObject.errorCode !== 0) {
+                console.log("onConnectionLost:", responseObject.errorMessage);
+            }
+        }
+
+        // called when a message arrives
+        function onMessageArrived(message) {
+            console.log("MessageArrived", message.retained, message.destinationName, message.payloadString);
+            switch (message.destinationName) {
+                case "whaley/webcam/status":
+                    document.getElementById("webcamStatusText").textContent=message.payloadString;
+                    break;
+
+                case "whaley/webcam/control":
+                    document.getElementById("webcamControlText").textContent=message.payloadString;
+                    break;
+
+                case "whaley/pi01/status":
+                    document.getElementById("piStatusText").textContent=message.payloadString;
+                    break;
+            }
+        }
+
+        function startCamera() {
+            document.getElementById("webcamStatusText").textContent="starting...";
+            console.log("Starting camera...");
+            sendCameraControl("RUN", 1);
+        }
+
+        function stopCamera() {
+            document.getElementById("webcamStatusText").textContent="stopping...";
+            console.log("Stopping camera...");
+            sendCameraControl("STOP", 1);
+        }
+
+        function sendCameraControl(msgText, qos=0, msgRetained=false) {
+            const message = new Paho.MQTT.Message(msgText);
+            message.destinationName = "whaley/webcam/control";
+            message.qos = qos;
+            message.retained = msgRetained;
+            client.send(message);
+        }
+
+    </script>
+
+  </head>
+  <body>
+
+    <h1></h1>Whaley Camera Control</h1>
+    <br>
+    <button type="button" onclick="startCamera()">Run for 5 minutes</button>
+    <br>
+    <button type="button" onclick="stopCamera()">Stop</button>
+    <br>
+    Pi Status: <span id="piStatusText"></span><br>
+    Last webcam control message: <span id="webcamControlText"></span><br>
+    Webcam Status: <span id="webcamStatusText"></span><br>
+  
+  </body>
+</html>
