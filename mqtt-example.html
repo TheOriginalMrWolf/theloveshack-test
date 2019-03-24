@@ -79,6 +79,12 @@
             }
         }
 
+        function startCameraNoTimeout() {
+            document.getElementById("webcamStatusText").textContent="starting - WARNING: NO TIMEOUT...";
+            console.log("Starting camera - without timeout...");
+            sendCameraControl("RUN_NO_TIMEOUT", 1);
+        }
+
         function startCamera() {
             document.getElementById("webcamStatusText").textContent="starting...";
             console.log("Starting camera...");
@@ -106,6 +112,8 @@
 
     <h1></h1>Whaley Camera Control</h1>
     <br>
+    <button type="button" onclick="startCameraNoTimeout()">Run forever</button>
+    <br>
     <button type="button" onclick="startCamera()">Run for 5 minutes</button>
     <br>
     <button type="button" onclick="stopCamera()">Stop</button>
@@ -113,6 +121,8 @@
     Pi Status: <span id="piStatusText"></span><br>
     Last webcam control message: <span id="webcamControlText"></span><br>
     Webcam Status: <span id="webcamStatusText"></span><br>
+    <br>
+    <iframe id="youtubeFrame" src="https://www.youtube.com/embed/live_stream?channel=UCuULfrk9IhLJc8KkvL0Sucw&autoplay=true" frameborder="0" autoplay="" allowfullscreen="" allow="accelerometer; autoplay; encrypted-media; gyroscope;" width="800" height="449.9943750703116"></iframe>
   
   </body>
 </html>
