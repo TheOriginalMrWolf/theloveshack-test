@@ -76,6 +76,10 @@
                 case "whaley/pi01/status":
                     document.getElementById("piStatusText").textContent=message.payloadString;
                     break;
+
+                case "whaley/restreamer/config":
+                    document.getElementById("restreamerConfig").textContent=JSON.stringify(message.payloadString, null, 4);
+                    break;
             }
         }
 
@@ -121,6 +125,12 @@
     Pi Status: <span id="piStatusText"></span><br>
     Last webcam control message: <span id="webcamControlText"></span><br>
     Webcam Status: <span id="webcamStatusText"></span><br>
+    Restreamer config: <br>
+    <pre>
+        <code>
+            <span id="restreamerConfig"></span>
+        </code>
+    </pre>
     <br>
     <iframe
         src="https://player.twitch.tv/?channel=whaleycam"
