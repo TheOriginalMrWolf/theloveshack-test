@@ -78,7 +78,7 @@
                     break;
 
                 case "whaley/restreamer/config":
-                    document.getElementById("restreamerConfig").textContent=JSON.stringify(JSON.parse(message.payloadString), null, 4);
+                    document.getElementById("restreamerConfig").textContent=JSON.stringify(JSON.parse(message.payloadString), null, 2);
                     break;
             }
         }
@@ -126,11 +126,7 @@
     Last webcam control message: <span id="webcamControlText"></span><br>
     Webcam Status: <span id="webcamStatusText"></span><br>
     Restreamer config: <br>
-    <pre>
-        <code>
-            <span id="restreamerConfig"></span>
-        </code>
-    </pre>
+    <pre><code><span id="restreamerConfig"></span></code></pre>
     <br>
     <iframe
         src="https://player.twitch.tv/?channel=whaleycam"
