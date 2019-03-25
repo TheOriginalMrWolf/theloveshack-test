@@ -78,7 +78,7 @@
                     break;
 
                 case "whaley/restreamer/config":
-                    document.getElementById("restreamerConfig").textContent=JSON.stringify(message.payloadString, null, 4);
+                    document.getElementById("restreamerConfig").textContent=JSON.stringify(JSON.parse(message.payloadString), null, 4);
                     break;
             }
         }
